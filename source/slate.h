@@ -76,7 +76,7 @@ class slate
 							(*iter)->selected = 1;
 						}
 					}
-				}
+				}//Press down end
 				
 				if (hidKeysDown() & KEY_UP) {
 					if(item_index != 0) {
@@ -89,7 +89,7 @@ class slate
 							(*iter)->selected = 1;
 						}
 					}
-				}
+				}//Press up end
 				
 				if(hidKeysDown() & KEY_A) {
 					for(std::list<item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
@@ -98,7 +98,12 @@ class slate
 							(*iter)->onSelect();
 						}
 					}
-				}			
+				}//Press A end	
+				if (hidKeysDown() & KEY_B) {
+					if (cSlateManager->returnSlate() != 1) {
+						cSlateManager->changeSlate(1);
+					}
+				}
 			}
 		}
 		

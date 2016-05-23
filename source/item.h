@@ -14,6 +14,7 @@ class item
 		int text_b = 255;
 		int selected = 0;//0 - Not selected; 1 - Selected
 		int index = 0;
+		int switchSlate = 0;
 		
 		//Functions
 		void printItem(int y, sftd_font *font) {
@@ -39,11 +40,11 @@ class item
 };
 
 class changeBannerColor : public item {
-public:
-	void onSelect() {
-		cSlateManager->randomizeBanner();
-		//Change slate?
-	}
+	public:
+		void onSelect() {
+			cSlateManager->randomizeBanner();
+			//Change slate?
+		}
 };
 
 class selectFireEmblem : public item {

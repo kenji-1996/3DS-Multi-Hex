@@ -11,21 +11,17 @@ slateManager *cSlateManager = NULL;
 		home->banner_r = 30;
 		home->banner_g = 144;
 		home->banner_b = 255;
-		home->focused = 1;
 		//Building items for home
 		selectFireEmblem* fireEmblemItem = new selectFireEmblem;
 		fireEmblemItem->setName = "Fire Emblem";
 		fireEmblemItem->setDescription = "Fire Emblem:Awakening difficulty modifier";
-		fireEmblemItem->selected = 1;
 		home->items.push_back(fireEmblemItem);
 		changeBannerColor* testOption = new changeBannerColor;
 		testOption->setName = "Randomize banner color!";
 		testOption->setDescription = "An option to show how the system fully works,\nby randomizing this slates banner color :)";
 		home->items.push_back(testOption);
-		home->item_count = home->items.size();
 		//Finished building and adding items
 		slates.push_back(home);
-
 		//Finished 'home' slate useage and adding
 
 		//Creating 'Fire Emblem' slate - ID is 2
@@ -39,28 +35,24 @@ slateManager *cSlateManager = NULL;
 		fireEmblemNormal* normalDiffItem = new fireEmblemNormal;
 		normalDiffItem->setName = "Normal Difficulty";
 		normalDiffItem->setDescription = "Sets your save game to normal difficulty";
-		normalDiffItem->selected = 1;
 		fireEmblem->items.push_back(normalDiffItem);
 		fireEmblemHard* hardDiffItem = new fireEmblemHard;
 		hardDiffItem->setName = "Hard Difficulty";
 		hardDiffItem->setDescription = "Sets your save game to hard difficulty";
-		hardDiffItem->selected = 0;
 		fireEmblem->items.push_back(hardDiffItem);
 		fireEmblemLunatic* lunaticDiffItem = new fireEmblemLunatic;
 		lunaticDiffItem->setName = "Lunatic Difficulty";
 		lunaticDiffItem->setDescription = "Sets your save game to lunatic difficulty";
-		lunaticDiffItem->selected = 0;
 		fireEmblem->items.push_back(lunaticDiffItem);
 		fireEmblemLunaticP* lunaticPDiffItem = new fireEmblemLunaticP;
 		lunaticPDiffItem->setName = "Lunatic+ Difficulty";
 		lunaticPDiffItem->setDescription = "Sets your save game to lunatic+ difficulty";
-		lunaticPDiffItem->selected = 0;
 		fireEmblem->items.push_back(lunaticPDiffItem);
-		selectHome* homeItem = new selectHome;
+		/*selectHome* homeItem = new selectHome;
 		homeItem->setName = "Back to main menu";
 		homeItem->setDescription = "Goes back to the main menu";
-		homeItem->selected = 0;
-		fireEmblem->items.push_back(homeItem);
+		fireEmblem->items.push_back(homeItem);*/
+		//Finished, push this slate to the slate list
 		slates.push_back(fireEmblem);
 
 
@@ -121,4 +113,16 @@ slateManager *cSlateManager = NULL;
 				(*iter)->focused = 1;
 			}
 		}
+	}
+
+	int slateManager::returnSlate() {
+		int returnValue = 0;
+		for (std::list<slate*>::iterator iter = slates.begin(); iter != slates.end(); ++iter)
+		{
+			if ((*iter)->focused == 1) {
+				returnValue = (*iter)->index;
+			}
+		}
+		return returnValue;
+
 	}

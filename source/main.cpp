@@ -13,15 +13,20 @@ int main()
 	cSlateManager->generateSlates();
 	cSlateManager->generateStrings();
 	cSlateManager->generateIndex();
+	//Sets the starting slate
+	cSlateManager->changeSlate(1);
 	
 	
-	//Main 3DS Loop (for buttons!)
+	//Main 3DS Loop (for buttons or printing)
     while (aptMainLoop()) {
 		hidScanInput();
+
 		//Exit!
         if (hidKeysDown() & KEY_START) break;
 
+		//Print menu with items
 		cSlateManager->printSlates(font);
+		//Handle user input to change item selection
 		cSlateManager->userInput();
 		
     }

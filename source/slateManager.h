@@ -15,5 +15,6 @@ public:
 	void generateIndex();
 	void changeSlate(int slate_index);
 	void randomizeBanner();
+	int returnSlate();
 };
 extern slateManager *cSlateManager;

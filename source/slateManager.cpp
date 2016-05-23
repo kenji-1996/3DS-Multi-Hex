@@ -1,6 +1,7 @@
 #include "Includes.h"
 
 slateManager *cSlateManager = NULL;
+msgbox *newMsg = NULL;
 
 	//Functions
 	void slateManager::generateSlates() {
@@ -20,6 +21,10 @@ slateManager *cSlateManager = NULL;
 		testOption->setName = "Randomize banner color!";
 		testOption->setDescription = "An option to show how the system fully works,\nby randomizing this slates banner color :)";
 		home->items.push_back(testOption);
+		showMsgBox* showMsg = new showMsgBox;
+		showMsg->setName = "Show message box";
+		showMsg->setDescription = "Shows an example of the message box\nfunctionailty!";
+		home->items.push_back(showMsg);
 		//Finished building and adding items
 		slates.push_back(home);
 		//Finished 'home' slate useage and adding
@@ -48,10 +53,6 @@ slateManager *cSlateManager = NULL;
 		lunaticPDiffItem->setName = "Lunatic+ Difficulty";
 		lunaticPDiffItem->setDescription = "Sets your save game to lunatic+ difficulty";
 		fireEmblem->items.push_back(lunaticPDiffItem);
-		/*selectHome* homeItem = new selectHome;
-		homeItem->setName = "Back to main menu";
-		homeItem->setDescription = "Goes back to the main menu";
-		fireEmblem->items.push_back(homeItem);*/
 		//Finished, push this slate to the slate list
 		slates.push_back(fireEmblem);
 

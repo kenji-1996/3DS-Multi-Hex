@@ -18,3 +18,4 @@ public:
 	int returnSlate();
 };
 extern slateManager *cSlateManager;
+extern msgbox *newMsg;

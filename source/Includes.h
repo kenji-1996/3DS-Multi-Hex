@@ -18,6 +18,8 @@
 class item;
 class slate;
 
+#include "msgbox.h"
 #include "slateManager.h"
 #include "item.h"
 #include "slate.h"
+

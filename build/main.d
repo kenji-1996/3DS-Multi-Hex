@@ -59,6 +59,7 @@ main.o: \
  c:/devkitPro/libctru/include/3ds/romfs.h \
  c:/devkitPro/libctru/include/sf2d.h c:/devkitPro/libctru/include/sftd.h \
  c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/FreeSans_ttf.h \
+ c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/msgbox.h \
  c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/slateManager.h \
  c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/item.h \
  c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/slate.h
@@ -182,6 +183,8 @@ c:/devkitPro/libctru/include/sf2d.h:
 c:/devkitPro/libctru/include/sftd.h:
 
 c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/FreeSans_ttf.h:
+
+c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/msgbox.h:
 
 c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/slateManager.h:
 

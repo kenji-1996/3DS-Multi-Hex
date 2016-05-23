@@ -34,8 +34,7 @@ class item
 		}
 		
 		virtual void onSelect()  {
-			//cSlateManager->changeSlate(1);
-			//Change slate?
+
 		}
 };
 
@@ -43,21 +42,24 @@ class changeBannerColor : public item {
 	public:
 		void onSelect() {
 			cSlateManager->randomizeBanner();
-			//Change slate?
 		}
+};
+
+class showMsgBox : public item {
+public:
+	void onSelect() {
+		newMsg->setTitle = "Message Box: Example message box";
+		newMsg->title = newMsg->setTitle.c_str();
+		newMsg->setInfo = "This is a message box, the purpose of its functionality is to \nprovide insightful information to the user";
+		newMsg->info = newMsg->setInfo.c_str();
+		newMsg->focused = 1;
+	}
 };
 
 class selectFireEmblem : public item {
 	public:
 		void onSelect() {
 			cSlateManager->changeSlate(2);
-		}
-};
-
-class selectHome : public item {
-	public:
-		void onSelect() {
-			cSlateManager->changeSlate(1);
 		}
 };
 

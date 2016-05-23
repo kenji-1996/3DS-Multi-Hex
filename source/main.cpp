@@ -9,6 +9,7 @@ int main()
 	sftd_font *font = sftd_load_font_mem(FreeSans_ttf, FreeSans_ttf_size);
 	
 	cSlateManager = new slateManager();
+	newMsg = new msgbox();
 	//generates and loops the slate objects!
 	cSlateManager->generateSlates();
 	cSlateManager->generateStrings();

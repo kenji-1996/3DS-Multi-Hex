@@ -48,9 +48,9 @@ class changeBannerColor : public item {
 class showMsgBox : public item {
 public:
 	void onSelect() {
-		newMsg->setTitle = "Message Box: Example message box";
-		newMsg->title = newMsg->setTitle.c_str();
-		newMsg->setInfo = "This is a message box, the purpose of its functionality is to \nprovide insightful information to the user";
+		newMsg->setTitle = "3DS Multi-Hex user guide";
+		newMsg->title = newMsg->setTitle.c_str();                                       //
+		newMsg->setInfo = "3DS Multi-Hex is a WIP by Kenji(Metab), it is designed to be \neasily used and easily edited, to add or remove items \nwithout hard coding\nA - Selects item\nB - Closes msgbox\nStart - Closes 3DS Multi-Hex";
 		newMsg->info = newMsg->setInfo.c_str();
 		newMsg->focused = 1;
 	}
@@ -70,6 +70,11 @@ class fireEmblemNormal: public item {
 			ofs.seekp(0x0D);
 			ofs << char(0x00);
 			ofs.close();
+			newMsg->setTitle = "Fire Emblem:Awakening - Difficulty settings";
+			newMsg->title = newMsg->setTitle.c_str();
+			newMsg->setInfo = "FE:A difficulty has been set to 'Normal'";
+			newMsg->info = newMsg->setInfo.c_str();
+			newMsg->focused = 1;
 		}
 };
 
@@ -80,6 +85,11 @@ class fireEmblemHard: public item {
 			ofs.seekp(0x0D);
 			ofs << char(0x01);
 			ofs.close();
+			newMsg->setTitle = "Fire Emblem:Awakening - Difficulty settings";
+			newMsg->title = newMsg->setTitle.c_str();
+			newMsg->setInfo = "FE:A difficulty has been set to 'Hard'";
+			newMsg->info = newMsg->setInfo.c_str();
+			newMsg->focused = 1;
 		}
 };
 
@@ -90,6 +100,11 @@ class fireEmblemLunatic: public item {
 			ofs.seekp(0x0D);
 			ofs << char(0x02);
 			ofs.close();
+			newMsg->setTitle = "Fire Emblem:Awakening - Difficulty settings";
+			newMsg->title = newMsg->setTitle.c_str();
+			newMsg->setInfo = "FE:A difficulty has been set to 'Lunatic'";
+			newMsg->info = newMsg->setInfo.c_str();
+			newMsg->focused = 1;
 		}
 };
 
@@ -100,6 +115,11 @@ public:
 		ofs.seekp(0x0D);
 		ofs << char(0x03);
 		ofs.close();
+		newMsg->setTitle = "Fire Emblem:Awakening - Difficulty settings";
+		newMsg->title = newMsg->setTitle.c_str();
+		newMsg->setInfo = "FE:A difficulty has been set to 'Lunatic+'";
+		newMsg->info = newMsg->setInfo.c_str();
+		newMsg->focused = 1;
 	}
 };
 

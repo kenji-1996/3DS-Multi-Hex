@@ -22,8 +22,8 @@ msgbox *newMsg = NULL;
 		testOption->setDescription = "An option to show how the system fully works,\nby randomizing this slates banner color :)";
 		home->items.push_back(testOption);
 		showMsgBox* showMsg = new showMsgBox;
-		showMsg->setName = "Show message box";
-		showMsg->setDescription = "Shows an example of the message box\nfunctionailty!";
+		showMsg->setName = "Show controls/info";
+		showMsg->setDescription = "Informs the user about the controls and info\nwith a message box.";
 		home->items.push_back(showMsg);
 		//Finished building and adding items
 		slates.push_back(home);

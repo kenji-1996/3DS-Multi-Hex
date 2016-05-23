@@ -125,5 +125,11 @@ msgbox *newMsg = NULL;
 			}
 		}
 		return returnValue;
+	}
 
+	void slateManager::resetItemIndex() {
+		for (std::list<slate*>::iterator iter = slates.begin(); iter != slates.end(); ++iter)
+		{
+			(*iter)->item_index = -1;
+		}
 	}

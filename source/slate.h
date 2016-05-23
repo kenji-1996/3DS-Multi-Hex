@@ -71,49 +71,50 @@ class slate
 		
 		void userInput() {
 			if (newMsg->focused == 1) {
-				if (hidKeysDown() & KEY_B) {
+				if (hidKeysDown() & KEY_Y) {
 					newMsg->focused = 0;
+					item_index = 0;
 				}
-			} else {
-				if (focused == 1) {
-					if (hidKeysDown() & KEY_DOWN) {
-						if (item_index != (item_count - 1)) {
-							item_index++;
+			}
+			if (focused == 1) {
+				if (hidKeysDown() & KEY_DOWN) {
+					if (item_index != (item_count - 1)) {
+						item_index++;
+					}
+					clearSelectedItem();
+					for (std::list<item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
+					{
+						if (item_index == (*iter)->index) {
+							(*iter)->selected = 1;
 						}
-						clearSelectedItem();
-						for (std::list<item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
-						{
-							if (item_index == (*iter)->index) {
-								(*iter)->selected = 1;
-							}
-						}
-					}//Press down end
+					}
+				}//Press down end
 
-					if (hidKeysDown() & KEY_UP) {
-						if (item_index != 0) {
-							item_index--;
+				if (hidKeysDown() & KEY_UP) {
+					if (item_index != 0) {
+						item_index--;
+					}
+					clearSelectedItem();
+					for (std::list<item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
+					{
+						if (item_index == (*iter)->index) {
+							(*iter)->selected = 1;
 						}
-						clearSelectedItem();
-						for (std::list<item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
-						{
-							if (item_index == (*iter)->index) {
-								(*iter)->selected = 1;
-							}
-						}
-					}//Press up end
+					}
+				}//Press up end
 
-					if (hidKeysDown() & KEY_A) {
-						for (std::list<item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
-						{
-							if (item_index == (*iter)->index) {
-								(*iter)->onSelect();
-							}
+				if (hidKeysDown() & KEY_A) {
+					for (std::list<item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
+					{
+						if (item_index == (*iter)->index) {
+							(*iter)->onSelect();
+							cSlateManager->resetItemIndex();
 						}
-					}//Press A end	
-					if (hidKeysDown() & KEY_B) {
-						if (cSlateManager->returnSlate() != 1) {
-							cSlateManager->changeSlate(1);
-						}
+					}
+				}//Press A end	
+				if (hidKeysDown() & KEY_B) {
+					if (cSlateManager->returnSlate() != 1) {
+						cSlateManager->changeSlate(1);
 					}
 				}
 			}
@@ -124,5 +125,14 @@ class slate
 			{
 				(*iter)->selected = 0;
 			}
+		}
+
+		void mySleep(int sleepTime)
+		{
+			time_t unixTime = time(NULL);
+			struct tm* timeStruct = gmtime((const time_t *)&unixTime);
+			int curTime = timeStruct->tm_sec;
+			//int curTime = clock(); //get the current time
+			while (timeStruct->tm_sec - curTime < sleepTime) {} //wait until the time has passed
 		}
 };

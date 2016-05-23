@@ -10,6 +10,8 @@
 #include "FreeSans_ttf.h"
 #include <fstream>
 #include <random>
+#include <time.h>
+
 
 #include <vector>
 #include <list>

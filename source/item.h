@@ -50,7 +50,7 @@ public:
 	void onSelect() {
 		newMsg->setTitle = "3DS Multi-Hex user guide";
 		newMsg->title = newMsg->setTitle.c_str();                                       //
-		newMsg->setInfo = "3DS Multi-Hex is a WIP by Kenji(Metab), it is designed to be \neasily used and easily edited, to add or remove items \nwithout hard coding\nA - Selects item\nB - Closes msgbox\nStart - Closes 3DS Multi-Hex";
+		newMsg->setInfo = "3DS Multi-Hex is a WIP by Kenji(Metab), it is designed to be \neasily used and easily edited, to add or remove items \nwithout hard coding\nA - Selects item\nB - Goes to main menu\nY - Closes message box\nStart - Closes 3DS Multi-Hex";
 		newMsg->info = newMsg->setInfo.c_str();
 		newMsg->focused = 1;
 	}

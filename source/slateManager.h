@@ -16,6 +16,7 @@ public:
 	void changeSlate(int slate_index);
 	void randomizeBanner();
 	int returnSlate();
+	void resetItemIndex();
 };
 extern slateManager *cSlateManager;
 extern msgbox *newMsg;

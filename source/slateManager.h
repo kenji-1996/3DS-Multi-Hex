@@ -14,9 +14,11 @@ public:
 	void userInput();
 	void generateIndex();
 	void changeSlate(int slate_index);
+	void changeSlateByID(std::string id);
 	void randomizeBanner();
 	int returnSlate();
 	void resetItemIndex();
+	bool returnSlateFromID(std::string id);
 };
 extern slateManager *cSlateManager;
 extern msgbox *newMsg;

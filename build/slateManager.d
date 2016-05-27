@@ -61,6 +61,7 @@ slateManager.o: \
  c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/msgbox.h \
  c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/slateManager.h \
  c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/item.h \
+ c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/page.h \
  c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/slate.h
 
 c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/Includes.h:
@@ -186,5 +187,7 @@ c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/msgbox.h:
 c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/slateManager.h:
 
 c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/item.h:
+
+c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/page.h:
 
 c:/Users/kenji/Desktop/3DS/Homebrew/libs/sftdlib-master/sample/source/slate.h:

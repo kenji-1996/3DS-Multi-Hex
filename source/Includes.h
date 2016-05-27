@@ -11,7 +11,12 @@
 #include <fstream>
 #include <random>
 #include <time.h>
-
+#include <algorithm>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <istream>
+#include <stdlib.h> 
 
 #include <vector>
 #include <list>
@@ -19,9 +24,12 @@
 
 class item;
 class slate;
+class page;
+
 
 #include "msgbox.h"
 #include "slateManager.h"
 #include "item.h"
+#include "page.h"
 #include "slate.h"
 

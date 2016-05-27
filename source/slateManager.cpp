@@ -3,60 +3,129 @@
 slateManager *cSlateManager = NULL;
 msgbox *newMsg = NULL;
 
+	std::vector<std::string> split(std::string str, char delimiter) {
+		std::vector<std::string> internal;
+		std::stringstream ss(str); // Turn the string into a stream.
+		std::string tok;
+
+		while (std::getline(ss, tok, delimiter)) {
+			internal.push_back(tok);
+		}
+		return internal;
+	}
+
 	//Functions
 	void slateManager::generateSlates() {
-		//Creating 'home' slate - ID is 1
+		//Setting up home
 		slate* home = new slate;
-		home->setName = "Easy Menu Builder";
-		home->setDescription = "Creating an easy way to menu build with the 3DS, use objects!";
+		home->setName = "3DS Multi-Hex";
 		home->banner_r = 30;
 		home->banner_g = 144;
 		home->banner_b = 255;
+		home->id = "home";
+		slates.push_back(home);
+		std::vector<std::string> slate_info;
+
+		//Loading files
+		std::ifstream myReadFile;
+		myReadFile.open("\\3DSMH\\home.txt");
+		std::vector<std::string> lines;
+		for (std::string line; std::getline(myReadFile, line);)
+		{
+			lines.push_back(line);
+		}
+		for (std::vector<std::string>::iterator it = lines.begin(); it != lines.end(); ++it) {
+			item* i = new item;
+			std::string s = *it;
+			s = s.substr(0, s.size() - 1);
+			if (s != "") {
+				slate_info = split(s, '|');
+				//Makes a menu item for that cheat selection
+				i->setName = slate_info.at(0);
+				i->setDescription = slate_info.at(1);
+				i->slate_id = slate_info.at(2);
+				i->cheat = 0;
+				//Generates a slate for the cheat
+				slate* s = new slate;
+				s->setName = slate_info.at(0);
+				s->id = slate_info.at(2);
+				std::ifstream readSlate;
+				std::string slateLocation = "\\3DSMH\\" + slate_info.at(2) + ".txt";
+				readSlate.open(slateLocation);
+				//COnvert string to int atoi( str.c_str() );
+				std::vector<std::string> slate_lines;
+				for (std::string line; std::getline(readSlate, line);)
+				{
+					slate_lines.push_back(line);
+				}
+				for (std::vector<std::string>::iterator it = slate_lines.begin(); it != slate_lines.end(); ++it) {
+					std::string sz = *it;
+					sz = sz.substr(0, sz.size() - 1);
+					if (sz != "") {
+						std::vector<std::string> splitter = split(sz, '|');
+						item* fileItem = new item;
+						fileItem->setName = splitter.at(0);
+						fileItem->setDescription = splitter.at(1);
+						fileItem->save_location = splitter.at(2);
+						unsigned long hex_value = std::strtoul(splitter.at(3).c_str(), 0, 16);
+						fileItem->pointer = hex_value;
+						unsigned long hex_value1 = std::strtoul(splitter.at(4).c_str(), 0, 16);
+						fileItem->value = hex_value1;
+						fileItem->cheat = 1;
+						s->items.push_back(fileItem);
+					}
+				}
+				std::vector<std::string> lines;
+				home->items.push_back(i);
+				slates.push_back(s);
+				
+			}
+		}
+
+		showMsgBox* info = new showMsgBox;
+		info->setName = "3DS MUlti-Hex Information";
+		info->setDescription = "Information on 3DSMH";
+		home->items.push_back(info);
+			/* std::cout << *it; ... */
 		//Building items for home
-		selectFireEmblem* fireEmblemItem = new selectFireEmblem;
+		/*selectFireEmblem* fireEmblemItem = new selectFireEmblem;
 		fireEmblemItem->setName = "Fire Emblem";
 		fireEmblemItem->setDescription = "Fire Emblem:Awakening difficulty modifier";
-		home->items.push_back(fireEmblemItem);
-		changeBannerColor* testOption = new changeBannerColor;
-		testOption->setName = "Randomize banner color!";
-		testOption->setDescription = "An option to show how the system fully works,\nby randomizing this slates banner color :)";
-		home->items.push_back(testOption);
-		showMsgBox* showMsg = new showMsgBox;
-		showMsg->setName = "Show controls/info";
-		showMsg->setDescription = "Informs the user about the controls and info\nwith a message box.";
-		home->items.push_back(showMsg);
+		home->items.push_back(fireEmblemItem);*/
+
 		//Finished building and adding items
-		slates.push_back(home);
+		
 		//Finished 'home' slate useage and adding
 
 		//Creating 'Fire Emblem' slate - ID is 2
-		slate* fireEmblem = new slate;
+		/*slate* fireEmblem = new slate;
 		fireEmblem->setName = "Fire Emblem:Awakening - Difficulty Modifier";
-		fireEmblem->setDescription = "Edits the difficulty of the (first?) save file in FE:A";
 		fireEmblem->banner_r = 178;
 		fireEmblem->banner_g = 34;
 		fireEmblem->banner_b = 34;
+
 		//Building items for FE:A
 		fireEmblemNormal* normalDiffItem = new fireEmblemNormal;
 		normalDiffItem->setName = "Normal Difficulty";
 		normalDiffItem->setDescription = "Sets your save game to normal difficulty";
 		fireEmblem->items.push_back(normalDiffItem);
+
 		fireEmblemHard* hardDiffItem = new fireEmblemHard;
 		hardDiffItem->setName = "Hard Difficulty";
 		hardDiffItem->setDescription = "Sets your save game to hard difficulty";
 		fireEmblem->items.push_back(hardDiffItem);
+
 		fireEmblemLunatic* lunaticDiffItem = new fireEmblemLunatic;
 		lunaticDiffItem->setName = "Lunatic Difficulty";
 		lunaticDiffItem->setDescription = "Sets your save game to lunatic difficulty";
 		fireEmblem->items.push_back(lunaticDiffItem);
+
 		fireEmblemLunaticP* lunaticPDiffItem = new fireEmblemLunaticP;
 		lunaticPDiffItem->setName = "Lunatic+ Difficulty";
 		lunaticPDiffItem->setDescription = "Sets your save game to lunatic+ difficulty";
 		fireEmblem->items.push_back(lunaticPDiffItem);
 		//Finished, push this slate to the slate list
-		slates.push_back(fireEmblem);
-
-
+		slates.push_back(fireEmblem);*/
 	}
 
 	void slateManager::generateStrings() {
@@ -116,6 +185,19 @@ msgbox *newMsg = NULL;
 		}
 	}
 
+	void slateManager::changeSlateByID(std::string id) {
+		for (std::list<slate*>::iterator iter = slates.begin(); iter != slates.end(); ++iter)
+		{
+			(*iter)->focused = 0;
+		}
+		for (std::list<slate*>::iterator iter = slates.begin(); iter != slates.end(); ++iter)
+		{
+			if ((*iter)->id == id) {
+				(*iter)->focused = 1;
+			}
+		}
+	}
+
 	int slateManager::returnSlate() {
 		int returnValue = 0;
 		for (std::list<slate*>::iterator iter = slates.begin(); iter != slates.end(); ++iter)
@@ -132,4 +214,18 @@ msgbox *newMsg = NULL;
 		{
 			(*iter)->item_index = -1;
 		}
+	}
+
+	bool slateManager::returnSlateFromID(std::string id)
+	{
+		bool returnValue = false;
+		for (std::list<slate*>::iterator iter = slates.begin(); iter != slates.end(); ++iter)
+		{
+			if ((*iter)->id == id) {
+				if ((*iter)->focused) {
+					returnValue = true;
+				}
+			}
+		}
+		return returnValue;
 	}

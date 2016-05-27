@@ -28,7 +28,7 @@ msgbox *newMsg = NULL;
 
 		//Loading files
 		std::ifstream myReadFile;
-		myReadFile.open("\\3DSMH\\home.txt");
+		myReadFile.open("/3DSMH/home.txt");
 		std::vector<std::string> lines;
 		for (std::string line; std::getline(myReadFile, line);)
 		{
@@ -50,7 +50,7 @@ msgbox *newMsg = NULL;
 				s->setName = slate_info.at(0);
 				s->id = slate_info.at(2);
 				std::ifstream readSlate;
-				std::string slateLocation = "\\3DSMH\\" + slate_info.at(2) + ".txt";
+				std::string slateLocation = "/3DSMH/" + slate_info.at(2) + ".txt";
 				readSlate.open(slateLocation);
 				//COnvert string to int atoi( str.c_str() );
 				std::vector<std::string> slate_lines;

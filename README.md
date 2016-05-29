@@ -12,42 +12,18 @@ An OOP C++ Project for the 3DS, to allow for easy addition of menu items
 * Fire Emblem difficulty editor (The first and the example of whats possible.
 
 # New menu example
-`slate* home = new slate;`
+Now loads from text files inside SD card located at:
+```
+sd\3DSMH\
+```
+To add a new item, open 'home.txt' and 
+_Game Name_|_Description for menu_|_Unique id_
+And to add a game cheat
+_Name of cheat_|_Description of cheat_|/JKSV/Saves/_Location of save file_|_Pointer_|_Value_
 
-`home->setName = "Easy Menu Builder";`
-
-`	home->setDescription = "Creating an easy way to menu build with the 3DS, use objects!";`
-
-`	home->banner_r = 30;`
-
-`	home->banner_g = 144;`
-
-`	home->banner_b = 255;`
-
-`	home->focused = 1;`
-
-`	//Building items for home`
-
-`	selectFireEmblem* fireEmblemItem = new selectFireEmblem;`
-
-`	fireEmblemItem->setName = "Fire Emblem";`
-
-`	fireEmblemItem->setDescription = "Fire Emblem:Awakening difficulty modifier";`
-
-`	home->items.push_back(fireEmblemItem);`
-
-`	changeBannerColor* testOption = new changeBannerColor;`
-
-` testOption->setName = "Randomize banner color!";`
-
-`	testOption->setDescription = "An option to show how the system fully works,\nby randomizing this slates banner color :)";`
-
-`	home->items.push_back(testOption);`
-
-`	home->item_count = home->items.size();`
-
-`	//Finished building and adding items`
-
-`	slates.push_back(home);`
-
-`	//Finished 'home' slate useage and adding`
+An example of this with Fire Emblem:Awakening
+```
+Fire Emblem:Awakening|Save file cheats for Fire Emblem:Awakening|FEA1
+Set Normal DIfficulty|Sets your save game to normal difficulty|/JKSV/Saves/Fire_Emblem__Awakening/hack/Chapter0|0x0D|0x00
+```
+**Notice it uses the same unique id, you MUST have the same unique id you set for the game!**

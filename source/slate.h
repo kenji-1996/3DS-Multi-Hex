@@ -78,7 +78,6 @@ class slate
 				}
 				pageIndex++;
 			}
-			
 			name = setName.c_str();
 		}
 		
@@ -97,13 +96,6 @@ class slate
 							(*iter)->printPage(font);
 						}
 					}
-					/*int start = 18;
-					for (std::list<item*>::iterator iter = items.begin(); iter != items.end(); ++iter)
-					{
-						(*iter)->generateStrings();
-						//(*iter)->printItem(start, font);
-						start += 17;
-					}*/
 					newMsg->printMsgBox(font);
 				
 				sf2d_end_frame();

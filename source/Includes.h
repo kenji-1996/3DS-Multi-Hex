@@ -16,7 +16,8 @@
 #include <sstream>
 #include <vector>
 #include <istream>
-#include <stdlib.h> 
+#include <stdlib.h>
+#include <set>
 
 #include <vector>
 #include <list>
@@ -25,10 +26,11 @@
 class item;
 class slate;
 class page;
-
+class cheat;
 
 #include "msgbox.h"
 #include "slateManager.h"
+#include "cheat.h"
 #include "item.h"
 #include "page.h"
 #include "slate.h"

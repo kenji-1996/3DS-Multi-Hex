@@ -11,7 +11,7 @@ int main()
 	cSlateManager = new slateManager();
 	newMsg = new msgbox();
 	//generates and loops the slate objects!
-	cSlateManager->generateSlates();
+	cSlateManager->generateSlates(font);
 	cSlateManager->generateStrings();
 	cSlateManager->generateIndex();
 	//Sets the starting slate

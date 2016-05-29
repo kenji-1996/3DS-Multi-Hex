@@ -14,9 +14,12 @@ class item
 		int text_b = 255;
 		int selected = 0;//0 - Not selected; 1 - Selected
 		int index = 0;
-		bool cheat = 0;
-		long pointer;
-		long value;
+		std::list<cheat*> cheatList;
+		int cheatBool = 0;
+		std::string pointer;
+		std::string value;
+		//long pointer;
+		//long value;
 		std::string slate_id;
 		std::string save_location;
 		
@@ -39,18 +42,31 @@ class item
 		
 		virtual void onSelect() {
 			if (selected == 1) {
-				if (cheat == 0) {
+				if (cheatBool == 0) {
 					cSlateManager->changeSlateByID(slate_id);
 				} else {
-					std::fstream ofs(save_location, std::ios::in | std::ios::out | std::ios::binary);
-					ofs.seekp(pointer);
-					ofs << char(value);
-					ofs.close();
-					newMsg->setTitle = "Cheat status";
-					newMsg->title = newMsg->setTitle.c_str();
-					newMsg->setInfo = setName + " has gone into effect";
-					newMsg->info = newMsg->setInfo.c_str();
-					newMsg->focused = 1;
+					int total = 0;
+					for (std::list<cheat*>::iterator iter = cheatList.begin(); iter != cheatList.end(); ++iter) {
+						total++;
+					}
+					int i = 0;
+					for (std::list<cheat*>::iterator iter = cheatList.begin(); iter != cheatList.end(); ++iter) {
+						if ((*iter)->location != "") {
+							(*iter)->updateValue();
+						}
+						i++;
+						if (i == total) {
+							newMsg->setTitle = "Cheat status";
+							newMsg->title = newMsg->setTitle.c_str();
+							std::string msgS = setName + " has gone into effect\nafter modifying ";
+							std::stringstream sstm;
+							sstm << msgS << total << " values.";
+							std::string result = sstm.str();
+							newMsg->setInfo = result;
+							newMsg->info = newMsg->setInfo.c_str();
+							newMsg->focused = 1;
+						}						
+					}
 				}
 			}
 		}

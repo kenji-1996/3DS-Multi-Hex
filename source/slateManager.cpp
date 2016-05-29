@@ -15,7 +15,7 @@ msgbox *newMsg = NULL;
 	}
 
 	//Functions
-	void slateManager::generateSlates() {
+	void slateManager::generateSlates(sftd_font *font) {
 		//Setting up home
 		slate* home = new slate;
 		home->setName = "3DS Multi-Hex";
@@ -44,7 +44,7 @@ msgbox *newMsg = NULL;
 				i->setName = slate_info.at(0);
 				i->setDescription = slate_info.at(1);
 				i->slate_id = slate_info.at(2);
-				i->cheat = 0;
+				i->cheatBool = 0;
 				//Generates a slate for the cheat
 				slate* s = new slate;
 				s->setName = slate_info.at(0);
@@ -67,12 +67,37 @@ msgbox *newMsg = NULL;
 						fileItem->setName = splitter.at(0);
 						fileItem->setDescription = splitter.at(1);
 						fileItem->save_location = splitter.at(2);
-						unsigned long hex_value = std::strtoul(splitter.at(3).c_str(), 0, 16);
-						fileItem->pointer = hex_value;
-						unsigned long hex_value1 = std::strtoul(splitter.at(4).c_str(), 0, 16);
-						fileItem->value = hex_value1;
-						fileItem->cheat = 1;
+						fileItem->pointer = splitter.at(3);
+						fileItem->value = splitter.at(4);
+						fileItem->cheatBool = 1;
+						cheat* c = new cheat;
+						c->location = splitter.at(2);
+						c->pointer = splitter.at(3);
+						c->value = splitter.at(4);
+						c->id = splitter.at(0);
+						fileItem->cheatList.push_back(c);
 						s->items.push_back(fileItem);
+					}
+				}
+				std::list<cheat*> tempList;
+				s->items.unique([&](const item *lhs,const item *rhs)->bool {
+					cheat* c = new cheat;
+					if (lhs->setName == rhs->setName) {
+						c->location = rhs->save_location;
+						c->pointer = rhs->pointer;
+						c->value = rhs->value;
+						c->id = rhs->setName;
+						tempList.push_back(c);
+					}
+					return lhs->setName == rhs->setName;
+				});
+				for (std::list<cheat*>::iterator iter = tempList.begin(); iter != tempList.end(); ++iter)
+				{
+					for (std::list<item*>::iterator iiter = s->items.begin(); iiter != s->items.end(); ++iiter)
+					{
+						if ((*iiter)->setName == (*iter)->id) {
+							(*iiter)->cheatList.push_back((*iter));
+						}
 					}
 				}
 				std::vector<std::string> lines;

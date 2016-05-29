@@ -8,7 +8,7 @@ public:
 	std::list<slate*> slates;
 
 	//Functions
-	void generateSlates();
+	void generateSlates(sftd_font *font);
 	void generateStrings();
 	void printSlates(sftd_font *font);
 	void userInput();
